@@ -1,6 +1,11 @@
 {
 	"name": "svelte-printpdf",
-	"version": "1.0.2",
+	"version": "1.0.2-metadata",
+	"author": "Binsar Dwi Jasuma <binsarjr121@gmail.com>",
+	"license": "MIT",
+	"description": "Component Print PDF support color,flexbox and grid system because using window.print() and css print. ",
+	"repository": "https://github.com/binsarjr/svelte-printpdf",
+	"private": false,
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
