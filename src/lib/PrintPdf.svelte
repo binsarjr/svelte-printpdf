@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+	import { pageClass } from './preferences';
+
 	type Callback = (el: HTMLElement, i: number) => void | Promise<void>;
 	export let print = false;
 	const appId = `SveltePrintPDF_${Math.floor(Math.random() * 999999999999)}`;
@@ -33,7 +36,21 @@
 		stackElements = [];
 	};
 
+	const resolvePages = () => {
+		const pages = document.getElementById(appId)?.querySelectorAll('.' + $pageClass);
+		pages?.forEach((_page, i) => {
+			let page = _page as HTMLElement;
+			// is first
+			if (i === 0) {
+				page.style.pageBreakBefore = 'auto';
+			} else {
+				page.style.pageBreakBefore = 'always';
+			}
+		});
+	};
+
 	$: if (print) {
+		resolvePages();
 		// Set to none all display element except AppPdf
 		findElementIsNotAppPdf(document.body, `body > ${selectorNotApp}`, (el, i) => {
 			displays[i] = window.getComputedStyle(el).display;
